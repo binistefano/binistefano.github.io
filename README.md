@@ -1,6 +1,6 @@
 # Stefano Bini - Portfolio
 
-### 🚀 [View Live Portfolio](https://stefanobini99.github.io/)
+### 🚀 [View Live Portfolio](https://binistefano.github.io/)
 
 Welcome to the source code of my personal portfolio website. This site serves as a central hub for my professional experience as a **Java Software Developer** and **Backend Specialist**.
 
