@@ -254,6 +254,9 @@
     .btn:hover { transform: translateY(-2px); }
     .btn-primary:hover { box-shadow: 0 6px 16px rgba(56, 189, 248, 0.4); }
 
+    /* Control Buttons Group */
+    .controls { display: flex; gap: 8px; }
+
     /* Mobile Header Quick Links */
     .mobile-contact { display: none; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
     
@@ -269,14 +272,14 @@
       .wrap { padding: 20px 16px; }
       .brand-group { flex-direction: column; align-items: flex-start; gap: 12px; }
       header { flex-direction: column; gap: 10px; }
-      .theme-toggle { position: absolute; top: 20px; right: 16px; }
+      .controls { position: absolute; top: 20px; right: 16px; }
     }
 
     /* Print Styles */
     @media print {
       body { background: white; color: black; }
       .card { box-shadow: none; border: 1px solid #ccc; break-inside: avoid; }
-      .theme-toggle, #backToTop, .mobile-contact, .btn { display: none !important; }
+      .controls, #backToTop, .mobile-contact, .btn { display: none !important; }
       .tag { border: 1px solid #999; color: black; background: transparent; }
       a { text-decoration: underline; color: black; }
     }
@@ -284,60 +287,60 @@
     /* Utilities */
     .hidden { display: none; }
     .btn svg { width: 18px; height: 18px; fill: currentColor; }
-.btn-icon-text { display: flex; align-items: center; gap: 8px; }
+    .btn-icon-text { display: flex; align-items: center; gap: 8px; }
 
-/* Ghost Button (Transparent with border) */
-.btn-ghost {
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--text-muted);
-}
-.btn-ghost:hover {
-  border-color: var(--text-muted);
-  color: var(--text-main);
-  background: rgba(255,255,255,0.03);
-}
+    /* Ghost Button (Transparent with border) */
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+    .btn-ghost:hover {
+      border-color: var(--text-muted);
+      color: var(--text-main);
+      background: rgba(255,255,255,0.03);
+    }
 
-/* Status Widget in Footer */
-.status-list {
-  margin-top: 24px;
-  padding-top: 20px;
-  border-top: 1px solid var(--border);
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
+    /* Status Widget in Footer */
+    .status-list {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
 
-.status-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 13px;
-  color: var(--text-muted);
-}
+    .status-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
 
-/* The "Green Dot" Pulse Animation */
-.status-dot {
-  width: 8px;
-  height: 8px;
-  background-color: #10b981; /* Emerald Green */
-  border-radius: 50%;
-  position: relative;
-}
-.status-dot::after {
-  content: '';
-  position: absolute;
-  top: -4px; left: -4px; right: -4px; bottom: -4px;
-  border-radius: 50%;
-  border: 1px solid #10b981;
-  opacity: 0.5;
-  animation: pulse 2s infinite;
-}
+    /* The "Green Dot" Pulse Animation */
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background-color: #10b981; /* Emerald Green */
+      border-radius: 50%;
+      position: relative;
+    }
+    .status-dot::after {
+      content: '';
+      position: absolute;
+      top: -4px; left: -4px; right: -4px; bottom: -4px;
+      border-radius: 50%;
+      border: 1px solid #10b981;
+      opacity: 0.5;
+      animation: pulse 2s infinite;
+    }
 
-@keyframes pulse {
-  0% { transform: scale(0.8); opacity: 0.8; }
-  100% { transform: scale(1.5); opacity: 0; }
-}
+    @keyframes pulse {
+      0% { transform: scale(0.8); opacity: 0.8; }
+      100% { transform: scale(1.5); opacity: 0; }
+    }
   </style>
 </head>
 <body class="">
@@ -348,34 +351,40 @@
         <div class="avatar">SB</div>
         <div class="brand-text">
           <h1>Stefano Bini</h1>
-          <div class="lead">Software Developer — Java &amp; Spring Ecosystem</div>
+          <div class="lead" data-i18n="header_role">Software Developer — Java &amp; Spring Ecosystem</div>
           
           <div class="top-badges">
             <a target="_blank" href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=7EE91D2EEE463C355283CEAC8F61805CB5014EA6B4A92CCD198988BCA74C1F58" title="Oracle Certified"><img class="badge-img" src="https://education.oracle.com/file/general/Oracle_University_Generic_Badge.png" alt="Oracle Badge"></a>
             <a target="_blank" href="https://openbadges.bestr.it/public/assertions/6VzzqveYTf6wTxDn7LyI0A" title="English B2"><img class="badge-img" src="https://bestr.it/filemanager/show/3606499f-8a3c-4748-a045-42e165e85a07.png" alt="English Badge"></a>
-            <a href="stefano-bini-cv.pdf?v=1" download="" class="btn btn-sm" style="gap:6px;">
-                <span style="font-size:16px;">⇩</span> Download CV
+            
+            <a id="cv-download-btn" href="stefano-bini-cv.pdf?v=1" download="" class="btn btn-sm" style="gap:6px;">
+                <span style="font-size:16px;">⇩</span> <span data-i18n="download_cv">Download CV</span>
             </a>
           </div>
 
         </div>
       </div>
 
-      <button class="btn theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode">
-        <span id="theme-icon">☀</span>
-      </button>
+      <div class="controls">
+        <button class="btn theme-toggle" onclick="toggleLang()" aria-label="Switch Language">
+            <span id="lang-text">🇮🇹</span>
+        </button>
+        <button class="btn theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode">
+            <span id="theme-icon">☀</span>
+        </button>
+      </div>
     </header>
 
     <main>
       <div class="content">
         
         <section class="card">
-          <h2 class="section-title">About Me</h2>
-          <p>
+          <h2 class="section-title" data-i18n="about_title">About Me</h2>
+          <p data-i18n="about_text_1">
             I am a Java Software Developer specialized in building scalable, enterprise-grade applications using <strong>Java</strong> and the <strong>Spring ecosystem</strong>. 
             With a strong foundation in microservices architecture and RESTful API design, I help businesses modernize their legacy systems and deliver robust solutions.
           </p>
-          <p>I value clean architecture, attention to detail, and effective collaboration within cross-functional teams.</p>
+          <p data-i18n="about_text_2">I value clean architecture, attention to detail, and effective collaboration within cross-functional teams.</p>
           <div class="tags">
             <span class="tag">Java 21</span>
             <span class="tag">Spring Boot 3</span>
@@ -386,16 +395,16 @@
         </section>
 
         <section class="card">
-          <h2 class="section-title">Professional Experience</h2>
+          <h2 class="section-title" data-i18n="exp_title">Professional Experience</h2>
           
           <div class="timeline-item">
             <div class="job-header">
-              <div class="job-title">Software Developer</div>
-              <div class="job-date">Jul 2021 – Nov 2024</div>
+              <div class="job-title" data-i18n="job_role_1">Software Developer</div>
+              <div class="job-date" data-i18n="job_date_1">Jul 2021 – Nov 2024</div>
             </div>
             <div style="font-weight:600; color:var(--accent-primary); margin-bottom:6px;">Fulcri SRL — B2B Enterprise Solutions</div>
-            <p>Built scalable enterprise applications, customer portals, and backend services for pharmaceutical and technology clients.</p>
-            <ul class="job-details">
+            <p data-i18n="job_desc_1">Built scalable enterprise applications, customer portals, and backend services for pharmaceutical and technology clients.</p>
+            <ul class="job-details" data-i18n="job_details_1">
               <li>Architected and deployed RESTful APIs using Spring Boot</li>
               <li>Migrated legacy monolithic modules to a semi-modular architecture enhancing adherence to SOLID principles.</li>
               <li>Optimized complex SQL queries and Hibernate mappings across databases to improve performance of high-volume B2B transactions.</li>
@@ -406,7 +415,7 @@
         </section>
 
         <section class="card">
-          <h2 class="section-title">Java &amp; Microservices Projects</h2>
+          <h2 class="section-title" data-i18n="projects_title">Java &amp; Microservices Projects</h2>
 
           <div style="margin-bottom: 20px;">
             <div style="display:flex; justify-content:space-between; align-items:center;">
@@ -414,10 +423,10 @@
                 PulseGuard (Distributed Monitoring System)
               </h3>
               <a href="https://github.com/binistefano/pulseguard" target="_blank" style="font-size:13px; color:var(--accent-primary);">
-                View Source →
+                <span data-i18n="view_source">View Source</span> →
               </a>
             </div>
-            <p style="margin-top:8px;">
+            <p style="margin-top:8px;" data-i18n="pulseguard_desc">
               A cloud-native <strong>"Dead Man's Switch"</strong> monitoring platform built with <strong>Java 21</strong> and <strong>Spring Boot 3.5</strong>. 
               Features a strict microservices architecture with <strong>Spring Cloud Gateway</strong> routing, <strong>Eureka Service Discovery</strong>, and high-throughput ingestion. 
               Includes a <strong>Background Processor</strong> for stale-monitor detection via scheduled tasks and synchronous <strong>OpenFeign</strong> communication.
@@ -436,10 +445,10 @@
                 Cloud-Native Microservices Architecture
               </h3>
               <a href="https://github.com/binistefano/microservices-starter-kit" target="_blank" style="font-size:13px; color:var(--accent-primary);">
-                View Source →
+                <span data-i18n="view_source">View Source</span> →
               </a>
             </div>
-            <p style="margin-top:8px;">
+            <p style="margin-top:8px;" data-i18n="micro_desc">
               A production-ready distributed system built with <strong>Java 21</strong> and <strong>Spring Boot 3.5</strong>. 
               Architected using the <strong>API Gateway pattern</strong> for centralized routing and security. 
               Features include dynamic <strong>Service Discovery (Eureka)</strong>, synchronous inter-service communication via <strong>OpenFeign</strong>, and comprehensive <strong>Docker Compose</strong> orchestration for cloud-agnostic deployment.
@@ -458,10 +467,10 @@
                 Professional RESTful API Reference
               </h3>
               <a href="https://github.com/binistefano/task-manager-api" target="_blank" style="font-size:13px; color:var(--accent-primary);">
-                View Source →
+                <span data-i18n="view_source">View Source</span> →
               </a>
             </div>
-            <p style="margin-top:8px;">
+            <p style="margin-top:8px;" data-i18n="task_desc">
               A clean, production-grade monolithic API designed to demonstrate mastery of <strong>Spring Boot fundamentals</strong>. 
               Implements a strict <strong>Layered Architecture</strong> with comprehensive <strong>Unit Testing (JUnit 5)</strong>, Global Exception Handling, and auto-generated <strong>OpenAPI/Swagger</strong> documentation.
             </p>
@@ -475,31 +484,31 @@
         </section>
         
         <section class="card">
-          <h2 class="section-title">Education &amp; Certifications</h2>
+          <h2 class="section-title" data-i18n="edu_title">Education &amp; Certifications</h2>
           <div style="display:flex;flex-direction:column;gap:8px">
             <div>
-              <strong>Bachelor's Degree in Computer Science</strong> — Università degli Studi di Milano Bicocca &nbsp;
-              <div class="muted" style="margin-bottom:0;">98 ECTS • Algorithms, Data Structures, Databases, OS, Software Engineering</div>
+              <strong data-i18n="edu_degree">Bachelor's Degree in Computer Science</strong> — Università degli Studi di Milano Bicocca &nbsp;
+              <div class="muted" style="margin-bottom:0;" data-i18n="edu_degree_desc">98 ECTS • Algorithms, Data Structures, Databases, OS, Software Engineering</div>
             </div>
 
             <div>
               <strong>Oracle Certified Associate (OCA)</strong> — Java SE 8 Programmer &nbsp;
-              <div class="muted" style="margin-bottom:0;"><a href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=7EE91D2EEE463C355283CEAC8F61805CB5014EA6B4A92CCD198988BCA74C1F58" style="color:var(--accent-primary);" target="_blank">View credential</a></div>
+              <div class="muted" style="margin-bottom:0;"><a href="https://catalog-education.oracle.com/pls/certview/sharebadge?id=7EE91D2EEE463C355283CEAC8F61805CB5014EA6B4A92CCD198988BCA74C1F58" style="color:var(--accent-primary);" target="_blank" data-i18n="view_cred">View credential</a></div>
             </div>
 
             <div>
               <strong>Bestr B2 English Certification</strong> &nbsp;
-              <div class="muted" style="margin-bottom:0;"><a href="https://openbadges.bestr.it/public/assertions/6VzzqveYTf6wTxDn7LyI0A" style="color:var(--accent-primary);" target="_blank">View badge</a></div>
+              <div class="muted" style="margin-bottom:0;"><a href="https://openbadges.bestr.it/public/assertions/6VzzqveYTf6wTxDn7LyI0A" style="color:var(--accent-primary);" target="_blank" data-i18n="view_badge">View badge</a></div>
             </div>
 
-            <div class="muted" style="margin-bottom:0;">IT Technician Diploma — Leonardo Da Vinci</div>
-            <div class="muted" style="margin-bottom:0;">BLSD Operator</div>
+            <div class="muted" style="margin-bottom:0;" data-i18n="edu_hs">IT Technician Diploma — Leonardo Da Vinci</div>
+            <div class="muted" style="margin-bottom:0;" data-i18n="edu_blsd">BLSD Operator</div>
           </div>
         </section>
         
         <section class="card">
-      <h2 class="section-title">Volunteering</h2>
-      <ul class="muted" style="list-style:disc; margin-left:18px;">
+      <h2 class="section-title" data-i18n="vol_title">Volunteering</h2>
+      <ul class="muted" style="list-style:disc; margin-left:18px;" data-i18n="vol_list">
         <li>2024–2025 — Surf camp volunteer, Tamraght (Morocco)</li>
         <li>2024 — Ecology support at music festival, Zernez (Switzerland)</li>
         <li>2021 — B&amp;B support, Elba (Italy)</li>
@@ -512,8 +521,8 @@
       <aside>
         
         <div class="card" style="position:sticky; top:20px;">
-  <h2 class="section-title">Get in Touch</h2>
-  <p style="font-size:14px; line-height:1.5; margin-bottom:24px;">
+  <h2 class="section-title" data-i18n="contact_title">Get in Touch</h2>
+  <p style="font-size:14px; line-height:1.5; margin-bottom:24px;" data-i18n="contact_text">
     I am currently specializing in <strong>Backend Development</strong> and modernizing legacy systems.
   </p>
   
@@ -521,16 +530,16 @@
     
     <a target="_blank" href="https://linkedin.com/in/stefano-bini-090045252" class="btn btn-primary btn-icon-text" style="justify-content:center;">
       <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
-      <span>Connect on LinkedIn</span>
+      <span data-i18n="btn_linkedin">Connect on LinkedIn</span>
     </a>
 
     <a href="mailto:binistefano.dev@gmail.com" class="btn btn-ghost btn-icon-text" style="justify-content:center;">
        <svg viewBox="0 0 24 24"><path d="M12 .02c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6.99 6.98l-6.99 5.666-6.991-5.666h13.981zm.01 10h-14v-8.505l7 5.673 7-5.672v8.504z"></path></svg>
-       <span>Send Me an Email</span>
+       <span data-i18n="btn_email">Send Me an Email</span>
     </a>
 
     <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
-        <a href="stefano-bini-cv.pdf?v=1" download="" class="btn btn-ghost btn-icon-text" style="justify-content:center; padding:10px 12px; font-size:13px;">
+        <a id="cv-btn-aside" href="stefano-bini-cv.pdf?v=1" download="" class="btn btn-ghost btn-icon-text" style="justify-content:center; padding:10px 12px; font-size:13px;">
           <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"></path></svg>
           <span>CV</span>
         </a>
@@ -543,17 +552,13 @@
   </div>
   
   <div class="status-list">
-     <div class="status-item">
-       <div class="status-dot"></div>
-       <span style="color:var(--text-main); font-weight:500;">Currently only open to Remote</span>
-     </div>
-    <!--
-     <div class="status-item">
-       <span>📍</span> Based in Milan, Italy
-     </div>-->
-     <div class="status-item">
-       <span>🌍</span> Willing to Relocate
-     </div>
+      <div class="status-item">
+        <div class="status-dot"></div>
+        <span style="color:var(--text-main); font-weight:500;" data-i18n="status_open">Currently only open to Remote</span>
+      </div>
+      <div class="status-item">
+        <span>🌍</span> <span data-i18n="status_relocate">Willing to Relocate</span>
+      </div>
   </div>
 </div>
 
@@ -597,18 +602,18 @@
         </div>
         
         <div class="card">
-            <h2 class="section-title">Languages</h2>
+            <h2 class="section-title" data-i18n="lang_title">Languages</h2>
             <div style="display:flex; justify-content:space-between; font-size:14px; margin-bottom:6px;">
-              <span>Italian</span> <span style="color:var(--text-muted)">Native</span>
+              <span data-i18n="lang_it">Italian</span> <span style="color:var(--text-muted)" data-i18n="lang_native">Native</span>
             </div>
             <div style="display:flex; justify-content:space-between; font-size:14px;">
-              <span>English</span> <span style="color:var(--text-muted)">B2 (Professional - Certified)</span>
+              <span data-i18n="lang_en">English</span> <span style="color:var(--text-muted)" data-i18n="lang_b2">B2 (Professional - Certified)</span>
             </div>
             <div style="display:flex; justify-content:space-between; font-size:14px;">
-              <span>Spanish</span> <span style="color:var(--text-muted)">A2 (Basic)</span>
+              <span data-i18n="lang_es">Spanish</span> <span style="color:var(--text-muted)" data-i18n="lang_a2">A2 (Basic)</span>
             </div>
             <div style="display:flex; justify-content:space-between; font-size:14px;">
-              <span>French / Dutch</span> <span style="color:var(--text-muted)">A1 (Basic)</span>
+              <span data-i18n="lang_fr">French / Dutch</span> <span style="color:var(--text-muted)" data-i18n="lang_a1">A1 (Basic)</span>
             </div>
         </div>
 
@@ -621,11 +626,149 @@
   </div>
 
   <script>
-    // Theme Logic with LocalStorage
+    // --- Translation Data ---
+    const translations = {
+        en: {
+            header_role: "Software Developer — Java & Spring Ecosystem",
+            download_cv: "Download CV",
+            about_title: "About Me",
+            about_text_1: "I am a Java Software Developer specialized in building scalable, enterprise-grade applications using <strong>Java</strong> and the <strong>Spring ecosystem</strong>. With a strong foundation in microservices architecture and RESTful API design, I help businesses modernize their legacy systems and deliver robust solutions.",
+            about_text_2: "I value clean architecture, attention to detail, and effective collaboration within cross-functional teams.",
+            exp_title: "Professional Experience",
+            job_role_1: "Software Developer",
+            job_date_1: "Jul 2021 – Nov 2024",
+            job_desc_1: "Built scalable enterprise applications, customer portals, and backend services for pharmaceutical and technology clients.",
+            job_details_1: `<li>Architected and deployed RESTful APIs using Spring Boot</li>
+              <li>Migrated legacy monolithic modules to a semi-modular architecture enhancing adherence to SOLID principles.</li>
+              <li>Optimized complex SQL queries and Hibernate mappings across databases to improve performance of high-volume B2B transactions.</li>
+              <li>Implemented robust security protocols (OAuth2 / Spring Security) to protect sensitive client data and secure REST endpoints.</li>
+              <li>Collaborated within an Agile/Scrum environment. (Jira/Confluence/Bitbucket) to streamline CI/CD pipelines via Jenkins.</li>`,
+            projects_title: "Java & Microservices Projects",
+            view_source: "View Source",
+            pulseguard_desc: `A cloud-native <strong>"Dead Man's Switch"</strong> monitoring platform built with <strong>Java 21</strong> and <strong>Spring Boot 3.5</strong>. Features a strict microservices architecture with <strong>Spring Cloud Gateway</strong> routing, <strong>Eureka Service Discovery</strong>, and high-throughput ingestion. Includes a <strong>Background Processor</strong> for stale-monitor detection via scheduled tasks and synchronous <strong>OpenFeign</strong> communication.`,
+            micro_desc: `A production-ready distributed system built with <strong>Java 21</strong> and <strong>Spring Boot 3.5</strong>. Architected using the <strong>API Gateway pattern</strong> for centralized routing and security. Features include dynamic <strong>Service Discovery (Eureka)</strong>, synchronous inter-service communication via <strong>OpenFeign</strong>, and comprehensive <strong>Docker Compose</strong> orchestration for cloud-agnostic deployment.`,
+            task_desc: `A clean, production-grade monolithic API designed to demonstrate mastery of <strong>Spring Boot fundamentals</strong>. Implements a strict <strong>Layered Architecture</strong> with comprehensive <strong>Unit Testing (JUnit 5)</strong>, Global Exception Handling, and auto-generated <strong>OpenAPI/Swagger</strong> documentation.`,
+            edu_title: "Education & Certifications",
+            edu_degree: "Bachelor's Degree in Computer Science",
+            edu_degree_desc: "98 ECTS • Algorithms, Data Structures, Databases, OS, Software Engineering",
+            view_cred: "View credential",
+            view_badge: "View badge",
+            edu_hs: "IT Technician Diploma — Leonardo Da Vinci",
+            edu_blsd: "BLSD Operator",
+            vol_title: "Volunteering",
+            vol_list: `<li>2024–2025 — Surf camp volunteer, Tamraght (Morocco)</li>
+              <li>2024 — Ecology support at music festival, Zernez (Switzerland)</li>
+              <li>2021 — B&B support, Elba (Italy)</li>
+              <li>2019 — Property maintenance, Albas (France)</li>`,
+            contact_title: "Get in Touch",
+            contact_text: "I am currently specializing in <strong>Backend Development</strong> and modernizing legacy systems.",
+            btn_linkedin: "Connect on LinkedIn",
+            btn_email: "Send Me an Email",
+            status_open: "Currently only open to Remote",
+            status_relocate: "Willing to Relocate",
+            lang_title: "Languages",
+            lang_it: "Italian",
+            lang_native: "Native",
+            lang_en: "English",
+            lang_b2: "B2 (Professional - Certified)",
+            lang_es: "Spanish",
+            lang_a2: "A2 (Basic)",
+            lang_fr: "French / Dutch",
+            lang_a1: "A1 (Basic)"
+        },
+        it: {
+            header_role: "Sviluppatore Software — Java & Ecosistema Spring",
+            download_cv: "Scarica CV",
+            about_title: "Chi Sono",
+            about_text_1: "Sono uno Sviluppatore Java specializzato nella realizzazione di applicazioni enterprise scalabili utilizzando <strong>Java</strong> e l'<strong>ecosistema Spring</strong>. Con solide basi in architetture a microservizi e progettazione di API RESTful, aiuto le aziende a modernizzare i sistemi legacy e fornire soluzioni robuste.",
+            about_text_2: "Valorizzo l'architettura pulita, l'attenzione ai dettagli e la collaborazione efficace all'interno di team cross-funzionali.",
+            exp_title: "Esperienza Professionale",
+            job_role_1: "Sviluppatore Software",
+            job_date_1: "Lug 2021 – Nov 2024",
+            job_desc_1: "Sviluppo di applicazioni aziendali scalabili, portali clienti e servizi backend per clienti nei settori farmaceutico e tecnologico.",
+            job_details_1: `<li>Progettazione e deploy di API RESTful utilizzando Spring Boot</li>
+              <li>Migrazione di moduli monolitici legacy verso un'architettura semi-modulare, migliorando l'adesione ai principi SOLID.</li>
+              <li>Ottimizzazione di query SQL complesse e mapping Hibernate su vari database per migliorare le prestazioni di transazioni B2B ad alto volume.</li>
+              <li>Implementazione di protocolli di sicurezza robusti (OAuth2 / Spring Security) per proteggere i dati sensibili dei clienti.</li>
+              <li>Collaborazione in ambiente Agile/Scrum (Jira/Confluence/Bitbucket) per ottimizzare le pipeline CI/CD tramite Jenkins.</li>`,
+            projects_title: "Progetti Java & Microservizi",
+            view_source: "Vedi Codice",
+            pulseguard_desc: `Una piattaforma cloud-native di monitoraggio <strong>"Dead Man's Switch"</strong> costruita con <strong>Java 21</strong> e <strong>Spring Boot 3.5</strong>. Presenta una rigorosa architettura a microservizi con routing tramite <strong>Spring Cloud Gateway</strong>, <strong>Eureka Service Discovery</strong> e ingestione ad alto throughput. Include un <strong>Background Processor</strong> per il rilevamento dei monitor inattivi tramite task pianificati e comunicazione sincrona <strong>OpenFeign</strong>.`,
+            micro_desc: `Un sistema distribuito pronto per la produzione costruito con <strong>Java 21</strong> e <strong>Spring Boot 3.5</strong>. Architettato utilizzando il <strong>pattern API Gateway</strong> per routing e sicurezza centralizzati. Le funzionalità includono <strong>Service Discovery (Eureka)</strong> dinamico, comunicazione inter-servizio sincrona tramite <strong>OpenFeign</strong> e orchestrazione completa con <strong>Docker Compose</strong> per il deploy cloud-agnostic.`,
+            task_desc: `Un'API monolitica pulita e professional-grade progettata per dimostrare la padronanza dei fondamenti di <strong>Spring Boot</strong>. Implementa una rigorosa <strong>Layered Architecture</strong> con <strong>Unit Testing (JUnit 5)</strong> completo, gestione globale delle eccezioni e documentazione <strong>OpenAPI/Swagger</strong> generata automaticamente.`,
+            edu_title: "Istruzione e Certificazioni",
+            edu_degree: "Laurea Triennale in Informatica",
+            edu_degree_desc: "98 CFU • Algoritmi, Strutture Dati, Database, Sistemi Operativi, Ingegneria del Software",
+            view_cred: "Vedi credenziale",
+            view_badge: "Vedi badge",
+            edu_hs: "Diploma Perito Informatico — Leonardo Da Vinci",
+            edu_blsd: "Operatore BLSD",
+            vol_title: "Volontariato",
+            vol_list: `<li>2024–2025 — Volontario Surf camp, Tamraght (Marocco)</li>
+              <li>2024 — Supporto ecologia a festival musicale, Zernez (Svizzera)</li>
+              <li>2021 — Supporto gestione B&B, Elba (Italia)</li>
+              <li>2019 — Manutenzione proprietà, Albas (Francia)</li>`,
+            contact_title: "Contatti",
+            contact_text: "Attualmente mi sto specializzando nello <strong>Sviluppo Backend</strong> e nella modernizzazione di sistemi legacy.",
+            btn_linkedin: "Collegati su LinkedIn",
+            btn_email: "Inviami una Email",
+            status_open: "Disponibile solo in Remoto",
+            status_relocate: "Disponibile al trasferimento",
+            lang_title: "Lingue",
+            lang_it: "Italiano",
+            lang_native: "Madrelingua",
+            lang_en: "Inglese",
+            lang_b2: "B2 (Professionale - Certificato)",
+            lang_es: "Spagnolo",
+            lang_a2: "A2 (Base)",
+            lang_fr: "Francese / Olandese",
+            lang_a1: "A1 (Base)"
+        }
+    };
+
+    // --- Language Logic ---
+    const langBtn = document.getElementById('lang-text');
+    const cvHeaderBtn = document.getElementById('cv-download-btn');
+    const cvAsideBtn = document.getElementById('cv-btn-aside');
+    
+    // Check local storage or default to English
+    let currentLang = localStorage.getItem('language') || 'en';
+    
+    // Initial Load
+    applyLanguage(currentLang);
+
+    function toggleLang() {
+        currentLang = currentLang === 'en' ? 'it' : 'en';
+        applyLanguage(currentLang);
+    }
+
+    function applyLanguage(lang) {
+        // Update Button Icon
+        langBtn.textContent = lang === 'en' ? '🇮🇹' : '🇬🇧';
+        
+        // Save Preference
+        localStorage.setItem('language', lang);
+        document.documentElement.lang = lang;
+
+        // Update Text Content
+        const elements = document.querySelectorAll('[data-i18n]');
+        elements.forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (translations[lang][key]) {
+                el.innerHTML = translations[lang][key];
+            }
+        });
+
+        // Update CV Links
+        const cvFile = lang === 'it' ? 'stefano-bini-cv-it.pdf?v=1' : 'stefano-bini-cv.pdf?v=1';
+        if(cvHeaderBtn) cvHeaderBtn.href = cvFile;
+        if(cvAsideBtn) cvAsideBtn.href = cvFile;
+    }
+
+    // --- Theme Logic ---
     const body = document.body;
     const icon = document.getElementById('theme-icon');
     
-    // Check local storage or system preference
     const savedTheme = localStorage.getItem('theme');
     const systemPrefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
 
@@ -642,4 +785,5 @@
     }
   </script>
 
-</body></html>
+</body>
+</html>
